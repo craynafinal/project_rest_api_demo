@@ -1,23 +1,20 @@
 package api;
-
-import java.util.concurrent.atomic.AtomicLong;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class SumAPIController {
+	private static SumAPI sumApi = new SumAPI();
 
-	private static final String template = "Hello, %s!";
-	private final AtomicLong counter = new AtomicLong();
-
-	@RequestMapping(value = "/api/values")
-	public String values(@RequestParam(value="name", defaultValue="World") String name) {
-		 return "ok";
+	@RequestMapping(method = RequestMethod.POST, value = "/api/values")
+	public String values(@ModelAttribute("value") int value) {
+		sumApi.addValue(value);
+		return "ok\n";
 	}
 
 	@RequestMapping(value = "/api/sum/values")
-	public int sumValues() {
-		return 1;
+	public String sumValues() {
+		return sumApi.getSum() + "\n";
 	}
+
+
 }

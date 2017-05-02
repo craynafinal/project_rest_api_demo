@@ -4,11 +4,7 @@ import java.util.*;
 
 public class SumAPI {
 	// The list that will contain all values for sum.
-	private List <Integer> list = null;
-
-	public SumAPI () {
-		list = new ArrayList<>();
-	}
+	private List <Integer> list = new ArrayList<>();
 
 	public void addValue(int value) {
 		list.add(value);
