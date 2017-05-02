@@ -11,6 +11,12 @@ public class SumAPIController {
 		return "ok\n";
 	}
 
+	@RequestMapping(method = RequestMethod.DELETE, value = "/api/values")
+  public String deleteValues() {
+    sumApi.removeAll();
+    return "ok\n";
+  }
+
 	@RequestMapping(value = "/api/sum/values")
 	public String sumValues() {
 		return sumApi.getSum() + "\n";
