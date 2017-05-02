@@ -1,20 +1,33 @@
 package api;
 
+import java.util.*;
+
 public class SumAPI {
+	// The list that will contain all values for sum.
+	private List <Integer> list = null;
 
-	private final long id;
-	private final String content;
-
-	public SumAPI(long id, String content) {
-		this.id = id;
-		this.content = content;
+	public SumAPI () {
+		list = new ArrayList<>();
 	}
 
-	public long getId() {
-		return id;
+	public void addValue(int value) {
+		list.add(value);
 	}
 
-	public String getContent() {
-		return content;
+	// This will return the sum value.
+	// If there is no value stored, 0 will be returned.
+	public int getSum() {
+		int sum = 0;
+		for (int i : list) {
+			sum += i;
+		}
+
+		return sum;
+	}
+
+	// This will remove all integers in the list.
+	// After this operation, the sum will be 0.
+	public void removeAll() {
+		list.clear();
 	}
 }
