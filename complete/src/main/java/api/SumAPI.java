@@ -1,29 +1,56 @@
 package api;
-
-import java.util.*;
+import java.io.*;
 
 public class SumAPI {
-	// The list that will contain all values for sum.
-	private List <Integer> list = new ArrayList<>();
+	private static final String fileName = "sum.txt";
+	private int sum = 0;
 
-	public void addValue(int value) {
-		list.add(value);
+	public SumAPI() {
+		readFromFile();
 	}
 
-	// This will return the sum value.
-	// If there is no value stored, 0 will be returned.
-	public int getSum() {
-		int sum = 0;
-		for (int i : list) {
-			sum += i;
-		}
+	public void addValue(int value) {
+		sum += value;
+		writeToFile(sum);
+	}
 
+	public int getSum() {
 		return sum;
 	}
 
-	// This will remove all integers in the list.
-	// After this operation, the sum will be 0.
 	public void removeAll() {
-		list.clear();
+		sum = 0;
+	}
+
+	private void writeToFile(int data) {
+		try {
+			Writer wr = new FileWriter(fileName);
+			wr.write(new Integer(sum).toString());
+			wr.close();
+		} catch (Exception e) {
+			System.err.println("Error: failed to store sum value.");
+		}
+	}
+
+	private void readFromFile() {
+		BufferedReader reader = null;
+
+		try {
+			File file = new File(fileName);
+			reader = new BufferedReader(new FileReader(file));
+			sum = Integer.parseInt(reader.readLine());
+
+		} catch (Exception e) {
+			// if error occured, just set sum to 0
+			sum = 0;
+		} finally {
+			try {
+				if (reader != null) {
+					reader.close();
+				}
+			} catch (Exception e) {
+				System.err.println("Error: failed to close while reading file.");
+			}
+		}
 	}
 }
