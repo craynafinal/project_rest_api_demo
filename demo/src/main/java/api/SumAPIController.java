@@ -22,8 +22,8 @@ public class SumAPIController {
 	// Reset sum value from SumAPI
 	@RequestMapping(method = RequestMethod.DELETE, value = "/api/values")
   public String resetValue() {
-    sumApi.resetValue();
-    return "ok\n";
+		sumApi.resetValue();
+		return "ok\n";
   }
 
 	// Prints the sum value
