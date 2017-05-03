@@ -48,14 +48,14 @@ public class SumAPIControllerTests {
 	// Add a given value and expect the OK status
 	private void addValue(int value) throws Exception {
 		this.mockMvc.perform(post("/api/values")
-      .param("value", Integer.toString(value)))
-      .andExpect(status().isOk());
+			.param("value", Integer.toString(value)))
+			.andExpect(status().isOk());
 	}
 
 	// Removes all values and expects the OK status
 	private void resetValue() throws Exception {
 		this.mockMvc.perform(delete("/api/values"))
-      .andExpect(status().isOk());
+			.andExpect(status().isOk());
 	}
 
 	// Compares the sum value and the given value, they must match
