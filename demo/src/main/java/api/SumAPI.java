@@ -38,6 +38,7 @@ public class SumAPI {
 	// Reset the sum back to 0
 	public void resetValue() {
 		sum = 0;
+		writeToFile(sum);
 	}
 
 	// Save value to a file 
